@@ -1,0 +1,45 @@
+/*This is the first assignment
+We are writing some introductory queries using the database named: AdventureWorksDW2012.
+*/
+
+SELECT DISTINCT City, StateProvinceName, EnglishCountryRegionName --1. Using English name, showing all unique cities, states, and countries from the geography table
+FROM Geography;
+
+SELECT LastName, MiddleName, FirstName --2. Show last, middle, and first name from the customer table, ordered in ascending order by last name 
+FROM Customer
+ORDER BY LastName; 
+
+SELECT TOP 10 Gender, MaritalStatus, BirthDate --3. Showing only top 10 customers, list gender, marital status, and birth date from the customer table
+FROM Customer;
+
+SELECT ProductKey, TotalProductCost, SalesAmount --4. Show the product key, total product cost, and sales amount of internet sales greater than or equal to $3,500 from the fact internet sales table
+FROM FactInternetSales
+WHERE SalesAmount>=3500;
+
+SELECT DISTINCT EnglishProductName --5. Show the unique english names from the product table, where the class is not 'null'
+FROM Product
+WHERE Class<>'NULL'
+
+SELECT ProductKey, UnitsIn, UnitsOut --6. Show product key, and units in and out from the factproductinventory table, where the unit cost is between $8 and $10
+FROM FactProductInventory
+WHERE UnitCost BETWEEN 8 AND 10;
+
+SELECT EnglishPromotionName, EnglishPromotionType --7. Show promotion name and type in English, where the max quantity is not 100
+FROM Promotion
+WHERE MaxQty<>100;
+
+SELECT EmployeeKey, CalendarQuarter, CalendarYear --8. Show employee key, calendar quarter and year from factsalesquota table showing only sales amount quotas of $1,000, $10,000, or $100,000
+FROM FactSalesQuota
+WHERE SalesAmountQuota IN ('1000','10000','100000');
+
+SELECT EmployeeKey, OrderQuantity, UnitPrice, SalesAmount --9. Show employee key, order quantity, unit price and sales amount from the factresellersales, where both the tax amount and total product cost is less than $20
+FROM FactResellerSales
+WHERE TaxAmt<20 AND TotalProductCost<20;
+
+SELECT LastName, MiddleName, FirstName --10. Show last, middle, and first name of the employees without 'null' middle names, in descending order by first name
+FROM Employee
+WHERE MiddleName<>'NULL'
+ORDER BY FirstName DESC;
+
+
+
